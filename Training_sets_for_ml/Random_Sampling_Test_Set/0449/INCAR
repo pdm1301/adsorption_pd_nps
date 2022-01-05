@@ -1,0 +1,36 @@
+SYSTEM = 6_Pd100_top_free_z(O)
+!Precision
+ADDGRID = .FALSE.  			! Additional grid of augment charges, reduces noise in forces
+LREAL = Auto     			! Auto or A projection done in real space, fully automatic optimization of projection operators recommended
+PREC = Normal   			! ENCUT=max(ENMAX), NGX,Y,Z=3/2×Gcut, NGXF,YF,ZF=2×NGX, ROPT=-5×10-4
+
+!Ionic
+IBRION = 2     				! CG relaxation
+NSW = 0      				! Max number of geometry cycles (ionic steps)
+ISIF = 2        			! Optimize atom positions
+ISYM = 2        			! Symmetry ON
+EDIFFG = -0.05  			! Will stop if all forces less than eV/A
+
+!Electronic
+ISTART = 0     				! Not read WAVECAR
+ICHARG = 2     				! Superpos atomic charge dens
+ISPIN = 1    				! Spin polarized calculations (collinear) are performed. 
+ISMEAR = 2     				! Method of Methfessel-Paxton order N=2 
+SIGMA = 0.2    				! Default 0.2 smearing value, as for CO on Ni(111) example on VASP-Wiki
+ENCUT = 400    				! Default ENMAX from POTCAR: O = 400 eV, C = 400 eV,  Pd  =  250.925eV
+NELM = 100     				! Max number of scf cycles
+NELMIN = 6    				! Min number of scf cycles - for better confidence
+EDIFF = 1E-4  				! Energy break 
+ALGO = Fast     			! Mix RMM-DIIS and Dav
+IVDW = 0       			! vdW zero damping DFT-D3 method of Grimme
+GGA = RP         			! Revised PBE
+
+!Output data
+LCHARG = .FALSE				! Don’t write files CHGCAR and CHG)
+LWAVE = .FALSE				! Don’t write WAVECAR file  at the end of a run.
+
+!Run (equivalent to vasp -k 1 -b 1 -c 1 -m 30000)
+KPAR = 1
+NPAR = 1
+NCORE = 1
+MAXMEM = 10000
